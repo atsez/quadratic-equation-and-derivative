@@ -11,7 +11,6 @@ delta = (b ** 2) - (4 * a * c)
 print('delta: ',delta)
 
 
-
 sqrt_value = m.sqrt(abs(delta))
 
 if delta == 0 :
@@ -26,10 +25,7 @@ elif delta > 0 :
     x2 = (-b - sqrt_value) / (2 * a)
     print(x2)
 
-
-
-
-    
+   
 else :
     print('complex roots')
     print(-b / (2 * a),'+ i',sqrt_value)
@@ -43,7 +39,10 @@ else :
 h = -b / (2 * a)
 k = (a*(h**2)) + (b*h) + c
 
-print(h,k)
-print('first commit')
-print('hi')
+print('h:', h, 'k:', k)
 
+x = np.arange(-2+h, h+2, 0.2)
+y = np.array([a* (i**2)+ b*i + c for i in x ])
+
+plt.plot(x,y)
+plt.show()
