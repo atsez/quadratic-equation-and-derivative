@@ -2,47 +2,57 @@ import matplotlib.pyplot as plt
 import numpy as np
 import math as m 
 
-
-# (a*(x**2)) + (b*x) + c = 0
-
-a, b, c = 2, -12, 16
-
-delta = (b ** 2) - (4 * a * c)
-print('delta: ',delta)
+class quadra :
+    def __init__(self, a , b, c) :
+        self.a = a
+        self.b = b
+        self.c = c
 
 
-sqrt_value = m.sqrt(abs(delta))
+    def solve(self) :
 
-if delta == 0 :
-    print('real and same roots')
-    print(-b / (2 * a))
+        delta =  (self.b ** 2) - (4 * self.a * self.c)
+        sqrt_val = m.sqrt(abs(delta))
+
+        if delta == 0 :
+            print('real and same roots')
+            print(- self.b / (2 * self.a))
+
+        elif delta > 0 :
+            print('real and different roots')
+            x1 = (-self.b + sqrt_val) / (2 * self.a)
+            print(x1)
+            x2 = (-self.b - sqrt_val) / (2 * self.a)
+            print(x2)
+
+        else :
+            print('complex roots')
+            print(-self.b / (2 * self.a),'+ i',sqrt_val , '\n', -self.b / (2 * self.a),'- i',sqrt_val)
+
+    def graph(self) :
+        pass
+        #graph
+        # h = X axis
+        # k = Y axis
+
+        h = -self.b / (2 * self.a)
+        k = (self.a*(h**2)) + (self.b*h) + self.c
+        print('h:', h, 'k:', k)
+
+        x = np.arange(-2+h, h+2, 0.2)
+        y = np.array([self.a* (i**2)+ self.b*i + self.c for i in x ])
+
+        plt.plot(x,y)
+        plt.show()
+
+    def derivative(self) :
+        pass
 
 
-elif delta > 0 :
-    print('real and different roots')
-    x1 = (-b + sqrt_value) / (2 * a)
-    print(x1)
-    x2 = (-b - sqrt_value) / (2 * a)
-    print(x2)
+equation_1 = quadra(2 , -12, 16)
 
-   
-else :
-    print('complex roots')
-    print(-b / (2 * a),'+ i',sqrt_value)
-    print(-b / (2 * a),'- i',sqrt_value)
+print(equation_1.solve())
+print(equation_1.graph())
 
 
-#graph
-# h = X axis
-# k = Y axis
 
-h = -b / (2 * a)
-k = (a*(h**2)) + (b*h) + c
-
-print('h:', h, 'k:', k)
-
-x = np.arange(-2+h, h+2, 0.2)
-y = np.array([a* (i**2)+ b*i + c for i in x ])
-
-plt.plot(x,y)
-plt.show()
