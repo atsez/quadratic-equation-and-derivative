@@ -46,13 +46,16 @@ class quadra :
         plt.show()
 
     def derivative(self) :
-        pass
+        # 2 ax + b
+        der_a = 2 * self.a
+        der_b = self.b
 
+        return der_a, 'X', der_b
 
 equation_1 = quadra(2 , -12, 16)
 
 print(equation_1.solve())
 print(equation_1.graph())
-
+print(equation_1.derivative())
 
 
