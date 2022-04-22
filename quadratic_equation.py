@@ -29,6 +29,20 @@ class quadra :
             print('complex roots')
             print(-self.b / (2 * self.a),'+ i',sqrt_val , '\n', -self.b / (2 * self.a),'- i',sqrt_val)
 
+
+
+    def derivative(self) :
+        global der_a
+        global der_b
+        # 2 ax + b
+        der_a = 2 * self.a
+        der_b = self.b
+        
+        print(der_a,  der_b)
+        #der_a, 'X', der_b
+
+
+
     def graph(self) :
         pass
         #graph
@@ -39,23 +53,30 @@ class quadra :
         k = (self.a*(h**2)) + (self.b*h) + self.c
         print('h:', h, 'k:', k)
 
-        x = np.arange(-2+h, h+2, 0.2)
+        x = np.arange(-2+h, h+2, 0.1)
         y = np.array([self.a* (i**2)+ self.b*i + self.c for i in x ])
+        x_tan = np.linspace(-2,2 ,100)
+        y_tan= (1* self.a * x_tan )+ self.b
+        plt.plot(x, y , x_tan, y_tan)
+        plt.grid()
+        
 
-        plt.plot(x,y)
+        #plt.plot(x,y)
         plt.show()
 
-    def derivative(self) :
-        # 2 ax + b
-        der_a = 2 * self.a
-        der_b = self.b
 
-        return der_a, 'X', der_b
 
-equation_1 = quadra(2 , -12, 16)
+
+
+
+
+
+equation_1 = quadra(a=4 , b=-1, c=1)
 
 print(equation_1.solve())
-print(equation_1.graph())
-print(equation_1.derivative())
+equation_1.derivative()
+equation_1.graph()
+
+
 
 
