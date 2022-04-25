@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import math as m 
+from scipy.misc import derivative
 
 class quadra :
     def __init__(self, a , b, c) :
@@ -38,7 +39,7 @@ class quadra :
         der_a = 2 * self.a
         der_b = self.b
         
-        print(der_a,  der_b)
+        print(der_a,"X" , '+', der_b)
         #der_a, 'X', der_b
 
 
@@ -48,16 +49,21 @@ class quadra :
         #graph
         # h = X axis
         # k = Y axis
-
         h = -self.b / (2 * self.a)
         k = (self.a*(h**2)) + (self.b*h) + self.c
         print('h:', h, 'k:', k)
 
-        x = np.arange(-2+h, h+2, 0.1)
+        x = np.arange(-6+h, h+6, 0.1)
         y = np.array([self.a* (i**2)+ self.b*i + self.c for i in x ])
-        x_tan = np.linspace(-2,2 ,100)
-        y_tan= (1* self.a * x_tan )+ self.b
-        plt.plot(x, y , x_tan, y_tan)
+        
+        def function(x):
+	        return self.a*x**2+self.b * x+ self.c
+        def deriv(x):
+	        return derivative(function, x)
+        y_ = np.linspace(-6+h, 6+h)
+        
+
+        plt.plot(x, y ,y_, deriv(y_))
         plt.grid()
         
 
@@ -71,7 +77,7 @@ class quadra :
 
 
 
-equation_1 = quadra(a=4 , b=-1, c=1)
+equation_1 = quadra(a=4 , b=1, c=1)
 
 print(equation_1.solve())
 equation_1.derivative()
